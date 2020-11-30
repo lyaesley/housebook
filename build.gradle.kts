@@ -15,13 +15,13 @@ plugins {
 
 }
 
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
-	}
-}
+//configurations {
+//	compileOnly {
+//		extendsFrom(configurations.annotationProcessor.get())
+//	}
+//}
 
-java.sourceCompatibility = JavaVersion.VERSION_11
+//java.sourceCompatibility = JavaVersion.VERSION_11
 
 allprojects {
 	repositories {
@@ -83,9 +83,9 @@ subprojects {
 project(":housebook-common") {
 	dependencies {
 		//DB
-//		runtimeOnly("com.h2database:h2")
+		runtimeOnly("com.h2database:h2")
 		//jpa
-//		implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+		implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	}
 
 	val jar: Jar by tasks

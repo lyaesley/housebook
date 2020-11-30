@@ -1,12 +1,13 @@
 package com.lyae.housebook.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
-//@SpringBootApplication(scanBasePackages = arrayOf("com.lyae.housebook"))
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = arrayOf("com.lyae.housebook.common"))
+@EntityScan("com.lyae.housebook")
+@EnableJpaRepositories(basePackages = arrayOf("com.lyae.housebook"))
 class HousebookApiApplication
 
 fun main(args: Array<String>) {

@@ -3,7 +3,7 @@ package com.lyae.housebook.common.domain
 import javax.persistence.*
 
 @Entity
-class Member (
+data class Member (
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(nullable = false)
