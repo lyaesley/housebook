@@ -5,7 +5,7 @@
 //import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 //
 //@SpringBootApplication
-//@EnableJpaRepositories(basePackages = arrayOf("com.lyae.housebook"))
+//@EnableJpaRepositories(basePackages = arrayOf("com.lyae.housebook.common"))
 //class HousebookCommonApplication
 //
 //fun main(args: Array<String>) {

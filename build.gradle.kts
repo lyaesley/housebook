@@ -15,11 +15,16 @@ plugins {
 
 }
 
-//configurations {
-//	compileOnly {
-//		extendsFrom(configurations.annotationProcessor.get())
-//	}
-//}
+configurations {
+	compileOnly {
+		extendsFrom(configurations.annotationProcessor.get())
+	}
+}
+
+val jar: Jar by tasks
+val bootJar: BootJar by tasks
+bootJar.enabled = false
+jar.enabled = true
 
 //java.sourceCompatibility = JavaVersion.VERSION_11
 

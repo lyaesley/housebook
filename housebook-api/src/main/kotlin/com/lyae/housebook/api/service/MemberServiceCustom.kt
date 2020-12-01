@@ -9,6 +9,6 @@ class MemberServiceCustom(
         val memberRepository: MemberRepository
 ) {
     fun singup(member: Member): Long {
-        return memberRepository.save(member).id
+        return memberRepository.save(member).idx
     }
 }

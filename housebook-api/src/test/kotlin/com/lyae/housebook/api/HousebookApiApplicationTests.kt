@@ -18,8 +18,8 @@ class HousebookApiApplicationTests(
     @Test
     fun save() {
         val member = Member(name = "ljy", email = "ljy@ljy.com")
-        val id: Long = memberServiceCustom.singup(member)
-        assertEquals(id, 1L)
+        val idx: Long = memberServiceCustom.singup(member)
+        assertEquals(idx, 1L)
     }
 
 }
