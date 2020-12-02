@@ -48,6 +48,17 @@ subprojects {
 	version = "0.0.1-SNAPSHOT"
 	java.sourceCompatibility = JavaVersion.VERSION_11
 
+	val profile = if (project.hasProperty("profile")) project.property("profile").toString() else "local"
+
+	sourceSets {
+		main {
+			resources {
+				srcDir("src/main/resources")
+				srcDir("src/main/resources-${profile}")
+			}
+		}
+	}
+
 	dependencies {
 		//DB
 		runtimeOnly("com.h2database:h2")
@@ -59,6 +70,9 @@ subprojects {
 		implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 		implementation("org.jetbrains.kotlin:kotlin-reflect")
 		implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+		// logger
+		implementation("org.slf4j:slf4j-api")
 
 		//basic
 		implementation("org.springframework.boot:spring-boot-starter")
@@ -73,6 +87,10 @@ subprojects {
 
 	tasks.withType<Test> {
 		useJUnitPlatform()
+	}
+
+	tasks.getByName<Test>("test"){
+		systemProperty("spring.profiles.active", profile)
 	}
 
 	tasks.withType<KotlinCompile> {
