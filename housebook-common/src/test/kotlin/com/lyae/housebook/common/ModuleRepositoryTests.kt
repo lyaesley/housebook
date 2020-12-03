@@ -21,10 +21,11 @@ class ModuleRepositoryTests(
     @Test
     fun add() {
         val member = Member(name="이준영", email = "test@test.com")
-        entityManager.persist(member)
-        entityManager.flush()
+        memberRepository.save(member)
 
-        val saved = memberRepository.findByIdOrNull(1L)
+        val saved = memberRepository.findByIdOrNull(member.memberId)
+        println(member)
+        println(saved)
         assertEquals(member.name, saved?.name)
     }
 }

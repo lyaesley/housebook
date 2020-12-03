@@ -3,15 +3,14 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     val kotlinVersion = "1.4.10"
-	id("org.springframework.boot") version "2.4.0"
-	id("io.spring.dependency-management") version "1.0.10.RELEASE"
+	id("org.springframework.boot") version "2.4.0" apply false
+	id("io.spring.dependency-management") version "1.0.10.RELEASE" apply false
 	kotlin("jvm") version kotlinVersion
-	kotlin("plugin.spring") version kotlinVersion
-	kotlin("plugin.jpa") version kotlinVersion
+	kotlin("plugin.spring") version kotlinVersion apply false
+	kotlin("plugin.jpa") version kotlinVersion apply false
     //추가
     kotlin("kapt") version kotlinVersion
-    kotlin("plugin.allopen") version kotlinVersion
-    kotlin("plugin.noarg") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion apply false
 
 }
 
@@ -20,13 +19,6 @@ configurations {
 		extendsFrom(configurations.annotationProcessor.get())
 	}
 }
-
-val jar: Jar by tasks
-val bootJar: BootJar by tasks
-bootJar.enabled = false
-jar.enabled = true
-
-//java.sourceCompatibility = JavaVersion.VERSION_11
 
 allprojects {
 	repositories {
@@ -40,7 +32,6 @@ subprojects {
 	apply(plugin = "kotlin-spring")
 	apply(plugin = "kotlin-jpa")
 	apply(plugin = "kotlin-allopen")
-	apply(plugin = "kotlin-noarg")
 	apply(plugin = "org.springframework.boot")
 	apply(plugin = "io.spring.dependency-management")
 
@@ -77,7 +68,8 @@ subprojects {
 		//basic
 		implementation("org.springframework.boot:spring-boot-starter")
 		implementation("org.springframework.boot:spring-boot-starter-web")
-		developmentOnly("org.springframework.boot:spring-boot-devtools")
+		implementation("org.springframework.boot:spring-boot-starter-actuator")
+		implementation("org.springframework.boot:spring-boot-devtools")
 		kapt("org.springframework.boot:spring-boot-configuration-processor")
 		annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 		testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -89,9 +81,9 @@ subprojects {
 		useJUnitPlatform()
 	}
 
-	tasks.getByName<Test>("test"){
+	/*tasks.getByName<Test>("test"){
 		systemProperty("spring.profiles.active", profile)
-	}
+	}*/
 
 	tasks.withType<KotlinCompile> {
 		kotlinOptions {
@@ -107,8 +99,7 @@ project(":housebook-common") {
 	dependencies {
 		//DB
 		runtimeOnly("com.h2database:h2")
-		//jpa
-		implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
 	}
 
 	val jar: Jar by tasks
@@ -120,16 +111,14 @@ project(":housebook-common") {
 
 project(":housebook-api") {
 	dependencies {
-		api(project(":housebook-common"))
-		implementation("org.springframework.boot:spring-boot-starter-actuator")
-//		implementation("org.springframework.boot:spring-boot-starter-web")
+		implementation(project(":housebook-common"))
+
 	}
 }
 
 project(":housebook-web") {
 	dependencies {
-		api(project(":housebook-common"))
-		implementation ("org.springframework.boot:spring-boot-starter-actuator")
+		implementation(project(":housebook-common"))
 	}
 }
 

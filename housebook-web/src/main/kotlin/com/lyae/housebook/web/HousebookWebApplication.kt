@@ -6,8 +6,8 @@ import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication
-@EntityScan(basePackages = arrayOf("com.lyae.housebook.common"))
-@EnableJpaRepositories(basePackages = arrayOf("com.lyae.housebook.common"))
+@EntityScan(basePackages = ["com.lyae.housebook.common"])
+@EnableJpaRepositories(basePackages = ["com.lyae.housebook.common"])
 class HousebookWebApplication
 
 fun main(args: Array<String>) {

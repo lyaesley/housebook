@@ -1,5 +1,3 @@
-env: dev
-
 logging:
   level:
     org:
@@ -12,6 +10,8 @@ logging:
 
 
 spring:
+  profiles:
+    active: dev
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -41,6 +41,7 @@ spring:
       path: /h2
       settings:
         trace: true
+
   test:
     database:
       replace: NONE

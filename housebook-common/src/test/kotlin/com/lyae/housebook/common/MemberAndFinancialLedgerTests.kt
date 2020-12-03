@@ -19,12 +19,12 @@ import org.springframework.transaction.annotation.Transactional
 
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
-@ActiveProfiles("local")
-// @Transactional 기능이 필요하지 않다면 아래와 같이한다. (테스트가 완료되도 자동으로 롤백하지 않는다)
- @Transactional(propagation = Propagation.NOT_SUPPORTED)
+//@ActiveProfiles("local")
+// @Transactional 기능이 필요하지 않다면 아래와 같이한다. (테스트가 완료되r도 자동으로 롤백하지 않는다)
+// @Transactional(propagation = Propagation.NOT_SUPPORTED)
 // AutoConfigureTestDatabase 어노테이션의 기본 설정값인 Replace.Any를 사용하면 기본적으로 내장된 임베디드 데이터베이스를 사용합니다.
 // 위의 코드에서 Replace.NONE로 설정하면 @ActiveProfiles에 설정한 프로파일 환경값에 따라 데이터 소스가 적용됩니다.
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class MemberAndFinancialLedgerTests(
         @Autowired val memberRepository: MemberRepository,
         @Autowired val financialLedgerRepository: FinancialLedgerRepository,

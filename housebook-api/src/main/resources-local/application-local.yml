@@ -1,5 +1,3 @@
-env: local
-
 logging:
   level:
     org:
@@ -12,6 +10,8 @@ logging:
 
 
 spring:
+  profiles:
+    active: local
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -30,7 +30,8 @@ spring:
         use_sql_comments: true
 
   datasource:
-    url: jdbc:h2:tcp://localhost/~/housebook-local
+    url: jdbc:h2:mem:housebook-local
+    #    url: jdbc:h2:tcp://localhost/~/housebook-local
     username: sa
     password:
     driver-class-name: org.h2.Driver
