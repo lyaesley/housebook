@@ -10,14 +10,14 @@ data class FinancialLedger(
         @Column(nullable = false)
         val ledgerId: Long = 0,
 
-        @OneToMany(mappedBy = "financialLedger")
-        val members: MutableList<Member> = mutableListOf(),
+        @OneToOne(mappedBy = "financialLedger")
+        val member: Member? = null,
 
 //        @OneToMany(mappedBy = "guestLedger")
 //        val guestMembers: MutableList<Member> = mutableListOf(),
 
         @Column(nullable = false)
-        val createDt: LocalDateTime = LocalDateTime.now(),
+        val createDt: LocalDateTime = LocalDateTime.now().withNano(0),
 ) {
         override fun toString(): String {
                 return "FinancialLedger(ledgerId=$ledgerId, createDt=$createDt)"

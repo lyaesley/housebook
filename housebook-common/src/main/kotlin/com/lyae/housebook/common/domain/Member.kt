@@ -18,7 +18,7 @@ data class Member (
         @Column(nullable = false, length = 16)
         val name: String = "",
 
-        @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+        @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
         @JoinColumn(name = "ledgerId", nullable = true)
         var financialLedger: FinancialLedger? = null,
 

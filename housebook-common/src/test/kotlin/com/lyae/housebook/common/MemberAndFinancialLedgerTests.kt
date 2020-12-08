@@ -2,20 +2,15 @@ package com.lyae.housebook.common
 
 import com.lyae.housebook.common.domain.FinancialLedger
 import com.lyae.housebook.common.domain.Member
-import com.lyae.housebook.common.repository.FinancialLedgerRepository
 import com.lyae.housebook.common.repository.MemberRepository
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 import org.springframework.data.repository.findByIdOrNull
-import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import org.springframework.transaction.annotation.Propagation
-import org.springframework.transaction.annotation.Transactional
 
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
@@ -27,35 +22,44 @@ import org.springframework.transaction.annotation.Transactional
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class MemberAndFinancialLedgerTests(
         @Autowired val memberRepository: MemberRepository,
-        @Autowired val financialLedgerRepository: FinancialLedgerRepository,
         @Autowired val em: TestEntityManager,
 ) {
     final val member = Member(
             email = "ljy@test.com",
             password = "1111",
             name = "이준영",
-    )
-    val ledger = FinancialLedger(members = mutableListOf(member))
+    ).also { it.financialLedger = FinancialLedger(member = it) }
 
-    @BeforeEach
-    fun setUp() {
-        member.financialLedger = ledger
-    }
+//    @BeforeEach
+//    fun setUp() {
+//        member.financialLedger = ledger
+//    }
 
     @Test
     fun createMemberAndLedger() {
 
         em.persist(member)
-
         println(member)
-        println(ledger)
+        em.detach(member)
+        val ledgerOfMember = em.find(FinancialLedger::class.java, member.financialLedger?.ledgerId)
+        println(ledgerOfMember.member)
+        assertEquals(member.financialLedger?.ledgerId, ledgerOfMember.ledgerId)
+        assertEquals(member.financialLedger?.createDt, ledgerOfMember.createDt)
 
     }
 
     @Test
     fun save() {
+        //member DB 저장
         memberRepository.save(member)
-        val find = memberRepository.findByIdOrNull(member.memberId)
-        println(find)
+        //entityManager (영속 컨텍스트) 에서 member 제거. 준영속 상태로 만듦
+        em.detach(member)
+        //DB에서 다시 조회
+        val findMember = memberRepository.findByIdOrNull(member.memberId)
+
+
+        assertEquals(member.memberId, findMember?.memberId)
+        assertEquals(member.financialLedger?.ledgerId, findMember?.financialLedger?.ledgerId)
+        assertEquals(member.financialLedger?.createDt, findMember?.financialLedger?.createDt)
     }
 }
