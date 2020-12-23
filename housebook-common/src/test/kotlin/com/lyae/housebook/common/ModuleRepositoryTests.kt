@@ -20,7 +20,7 @@ class ModuleRepositoryTests(
 ) {
     @Test
     fun add() {
-        val member = Member(name="이준영", email = "test@test.com")
+        val member = Member(name ="이준영", email = "test@test.com")
         memberRepository.save(member)
 
         val saved = memberRepository.findByIdOrNull(member.memberId)

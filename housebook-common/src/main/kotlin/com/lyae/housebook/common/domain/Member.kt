@@ -3,9 +3,9 @@ package com.lyae.housebook.common.domain
 import javax.persistence.*
 
 @Entity
-data class Member (
+data class Member(
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
         @Column(nullable = false)
         val memberId: Long = 0,
 
@@ -21,6 +21,9 @@ data class Member (
         @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
         @JoinColumn(name = "ledgerId", nullable = true)
         var financialLedger: FinancialLedger? = null,
+
+        @OneToMany(mappedBy = "member")
+        val pay: MutableList<Pay> = mutableListOf(),
 
 //        @ManyToOne(fetch = FetchType.LAZY)
 //        @JoinColumn(name = "ledgerId", nullable = true, insertable = false, updatable = false)

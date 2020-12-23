@@ -65,6 +65,10 @@ class MemberServiceTests(
         assertNotEquals(member.financialLedger, availableMember.financialLedger)
     }
 
+    @Test
+    fun abc() {
+
+    }
 
 
 

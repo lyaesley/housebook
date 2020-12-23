@@ -6,12 +6,15 @@ import javax.persistence.*
 @Entity
 data class FinancialLedger(
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
         @Column(nullable = false)
         val ledgerId: Long = 0,
 
         @OneToOne(mappedBy = "financialLedger")
         val member: Member? = null,
+
+        @OneToMany(mappedBy = "financialLedger")
+        val pay: MutableList<Pay> = mutableListOf(),
 
 //        @OneToMany(mappedBy = "guestLedger")
 //        val guestMembers: MutableList<Member> = mutableListOf(),
