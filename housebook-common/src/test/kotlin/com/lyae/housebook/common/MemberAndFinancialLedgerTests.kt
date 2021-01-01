@@ -21,13 +21,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 // 위의 코드에서 Replace.NONE로 설정하면 @ActiveProfiles에 설정한 프로파일 환경값에 따라 데이터 소스가 적용됩니다.
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class MemberAndFinancialLedgerTests(
-        @Autowired val memberRepository: MemberRepository,
-        @Autowired val em: TestEntityManager,
+    @Autowired val memberRepository: MemberRepository,
+    @Autowired val em: TestEntityManager,
 ) {
-    final val member = Member(
-            email = "ljy@test.com",
-            password = "1111",
-            name = "이준영",
+    private final val member = Member(
+        email = "ljy@test.com",
+        password = "1111",
+        name = "이준영",
     ).also { it.financialLedger = FinancialLedger(member = it) }
 
 //    @BeforeEach
@@ -40,6 +40,7 @@ class MemberAndFinancialLedgerTests(
 
         em.persist(member)
         println(member)
+        em.flush() //em 의 변경 내용을 데이터베이스에 반영한다.
         em.detach(member)
         val ledgerOfMember = em.find(FinancialLedger::class.java, member.financialLedger?.ledgerId)
         println(ledgerOfMember.member)
@@ -53,6 +54,7 @@ class MemberAndFinancialLedgerTests(
         //member DB 저장
         memberRepository.save(member)
         //entityManager (영속 컨텍스트) 에서 member 제거. 준영속 상태로 만듦
+        em.flush() //em 의 변경 내용을 데이터베이스에 반영한다.
         em.detach(member)
         //DB에서 다시 조회
         val findMember = memberRepository.findByIdOrNull(member.memberId)
