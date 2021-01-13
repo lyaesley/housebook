@@ -15,10 +15,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
 //@ActiveProfiles("local")
-// @Transactional 기능이 필요하지 않다면 아래와 같이한다. (테스트가 완료되r도 자동으로 롤백하지 않는다)
+// @Transactional 기능이 필요하지 않다면 아래와 같이한다. (테스트가 완료되도 자동으로 롤백하지 않는다)
 // @Transactional(propagation = Propagation.NOT_SUPPORTED)
-// AutoConfigureTestDatabase 어노테이션의 기본 설정값인 Replace.Any를 사용하면 기본적으로 내장된 임베디드 데이터베이스를 사용합니다.
-// 위의 코드에서 Replace.NONE로 설정하면 @ActiveProfiles에 설정한 프로파일 환경값에 따라 데이터 소스가 적용됩니다.
+// AutoConfigureTestDatabase 어노테이션의 기본 설정값인 Replace.Any 를 사용하면 기본적으로 내장된 임베디드 데이터베이스를 사용합니다.
+// 위의 코드에서 Replace.NONE 로 설정하면 @ActiveProfiles 에 설정한 프로파일 환경값에 따라 데이터 소스가 적용됩니다.
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class MemberAndFinancialLedgerTests(
     @Autowired val memberRepository: MemberRepository,
@@ -56,7 +56,7 @@ class MemberAndFinancialLedgerTests(
         //entityManager (영속 컨텍스트) 에서 member 제거. 준영속 상태로 만듦
         em.flush() //em 의 변경 내용을 데이터베이스에 반영한다.
         em.detach(member)
-        //DB에서 다시 조회
+        //DB 에서 다시 조회
         val findMember = memberRepository.findByIdOrNull(member.memberId)
 
 

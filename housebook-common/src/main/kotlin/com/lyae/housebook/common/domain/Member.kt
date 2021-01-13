@@ -25,6 +25,9 @@ data class Member(
         @OneToMany(mappedBy = "member")
         val pay: MutableList<Pay> = mutableListOf(),
 
+        @OneToMany(mappedBy = "member")
+        val category: MutableList<Category> = mutableListOf(),
+
 //        @ManyToOne(fetch = FetchType.LAZY)
 //        @JoinColumn(name = "ledgerId", nullable = true, insertable = false, updatable = false)
 //        var guestLedger: FinancialLedger? = null
