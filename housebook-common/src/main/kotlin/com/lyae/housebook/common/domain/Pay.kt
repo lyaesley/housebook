@@ -13,9 +13,17 @@ data class Pay (
        @JoinColumn(name = "memberId", nullable = false)
        var member: Member? = null,
 
-//       @ManyToOne(fetch = FetchType.LAZY)
-//       @JoinColumn(name = "ledgerId", nullable = false)
-//       var financialLedger: FinancialLedger? = null,
+       @ManyToOne(fetch = FetchType.LAZY)
+       @JoinColumn(name = "payMethodId", nullable = false)
+       var payType: PayType? = null,  //결제수단 (사용자가 등록한 결제수단)
+
+       @ManyToOne(fetch = FetchType.LAZY)
+       @JoinColumn(name = "categoryId", nullable = false)
+       var category: Category? = null,
+
+       @Enumerated(EnumType.STRING)
+       @Column(nullable = false)
+       val payStatus: PayStatus? = null,  //결제분류 (수입:INCOME, 지출:SPEND, 이체:TRANSFER)
 
 ){
        fun addMember(member: Member) {
@@ -24,5 +32,21 @@ data class Pay (
 
               this.member = member
               member.pays.add(this)
+       }
+
+       fun addPayMethod(payType: PayType) {
+              //기존 관계를 제거
+              this.payType?.pays?.remove(this)
+
+              this.payType = payType
+              payType.pays.add(this)
+       }
+
+       fun addCategory(category: Category) {
+              //기존 관계를 제거
+              this.category?.pays?.remove(this)
+
+              this.category = category
+              category.pays.add(this)
        }
 }

@@ -26,17 +26,14 @@ data class Member(
         val pays: MutableList<Pay> = mutableListOf(),
 
         @OneToMany(mappedBy = "member")
-        val category: MutableList<Category> = mutableListOf(),
+        val categories: MutableList<Category> = mutableListOf(),
 
-//        @ManyToOne(fetch = FetchType.LAZY)
-//        @JoinColumn(name = "ledgerId", nullable = true, insertable = false, updatable = false)
-//        var guestLedger: FinancialLedger? = null
-){
-        fun addPay(pay: Pay) {
-                pay.addMember(this)
-        }
+        @OneToMany(mappedBy = "member")
+        val payTypes: MutableList<PayType> = mutableListOf(),
 
+        ){
         fun addFinancialLedger(financialLedger: FinancialLedger) {
+
                 //기존 관계를 제거
                 this.financialLedger?.member?.remove(this)
 

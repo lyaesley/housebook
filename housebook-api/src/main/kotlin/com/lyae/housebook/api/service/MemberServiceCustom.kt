@@ -12,7 +12,7 @@ class MemberServiceCustom(
 ) {
     fun signUp(member: Member): ResultStatus {
         checkDuplication(member)?.also { return@signUp it }
-        val ledger = FinancialLedger(member = member)
+        val ledger = FinancialLedger(member = mutableListOf(member))
         member.financialLedger = ledger
         memberRepository.save(member)
         return ResultStatus("OK")
