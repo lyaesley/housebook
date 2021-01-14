@@ -19,7 +19,7 @@ data class Pay (
 
 ){
        fun addMember(member: Member) {
-              //기존 멤버와 관계를 제거
+              //기존 관계를 제거
               this.member?.pays?.remove(this)
 
               this.member = member

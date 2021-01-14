@@ -33,7 +33,14 @@ data class Member(
 //        var guestLedger: FinancialLedger? = null
 ){
         fun addPay(pay: Pay) {
-                this.pays.add(pay)
+                pay.addMember(this)
+        }
 
+        fun addFinancialLedger(financialLedger: FinancialLedger) {
+                //기존 관계를 제거
+                this.financialLedger?.member?.remove(this)
+
+                this.financialLedger = financialLedger
+                financialLedger.member.add(this)
         }
 }
