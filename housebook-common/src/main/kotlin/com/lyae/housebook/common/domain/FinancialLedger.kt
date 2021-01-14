@@ -10,11 +10,11 @@ data class FinancialLedger(
         @Column(nullable = false)
         val ledgerId: Long = 0,
 
-        @OneToOne(mappedBy = "financialLedger")
-        val member: Member? = null,
-
         @OneToMany(mappedBy = "financialLedger")
-        val pay: MutableList<Pay> = mutableListOf(),
+        val member: MutableList<Member> = mutableListOf(),
+
+//        @OneToMany(mappedBy = "financialLedger")
+//        val pay: MutableList<Pay> = mutableListOf(),
 
 //        @OneToMany(mappedBy = "guestLedger")
 //        val guestMembers: MutableList<Member> = mutableListOf(),

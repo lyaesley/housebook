@@ -28,7 +28,7 @@ class MemberAndFinancialLedgerTests(
         email = "ljy@test.com",
         password = "1111",
         name = "이준영",
-    ).also { it.financialLedger = FinancialLedger(member = it) }
+    ).also { it.financialLedger = FinancialLedger(member = mutableListOf(it)) }
 
 //    @BeforeEach
 //    fun setUp() {
