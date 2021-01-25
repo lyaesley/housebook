@@ -4,7 +4,7 @@ logging:
       hibernate:
         type:
           descriptor:
-            sql: trace
+            sql: trace #sql (Bind Parameter) 출력
 #            BasicBinder: trace
 #            EnumType: trace
 

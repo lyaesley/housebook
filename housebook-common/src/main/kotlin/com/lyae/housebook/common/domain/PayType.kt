@@ -3,7 +3,7 @@ package com.lyae.housebook.common.domain
 import javax.persistence.*
 
 @Entity
-class PayType(
+data class PayType(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
@@ -28,6 +28,10 @@ class PayType(
     fun addMember(member: Member) {
         this.member = member
         member.payTypes.add(this)
+    }
+
+    override fun toString(): String {
+        return "PayType(payTypeId=$payTypeId, payMethod=$payMethod, name='$name')"
     }
 
 }

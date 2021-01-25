@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @SpringBootApplication
 class HousebookCommonApplicationTests{
 
-    @Test
+//    @Test
     fun contextLoads() {
     }
 }

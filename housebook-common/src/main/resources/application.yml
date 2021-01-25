@@ -1,0 +1,20 @@
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace #sql (Bind Parameter) 출력
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true

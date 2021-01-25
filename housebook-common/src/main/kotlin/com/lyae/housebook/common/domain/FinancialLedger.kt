@@ -8,7 +8,7 @@ data class FinancialLedger(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         @Column(nullable = false)
-        val teamId: Long = 0,
+        val ledgerId: Long = 0,
 
         @OneToMany(mappedBy = "financialLedger")
         val member: MutableList<Member> = mutableListOf(),
@@ -17,6 +17,6 @@ data class FinancialLedger(
         val createDt: LocalDateTime = LocalDateTime.now().withNano(0),
 ) {
         override fun toString(): String {
-                return "FinancialLedger(ledgerId=$teamId, createDt=$createDt)"
+                return "FinancialLedger(ledgerId=$ledgerId, createDt=$createDt)"
         }
 }
