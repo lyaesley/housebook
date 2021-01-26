@@ -48,14 +48,14 @@ class PayTypeTest(
     @Test
     fun 결제종류_저장by멤버() {
 
+        //given
         //결제수단 카드 생성
         val payType생성카드 = PayType(
             payMethod = PayMethod.ETC,
             name = "생성카드",
-        )
-        
-        //결제수단 멤버 연결
-        payType생성카드.addMember(member준영)
+        ).apply { addMember(member준영) }
+
+        //when
 
         //payType를 저장하기 전에 member 도 em에 관리되어 있어야 한다. beforeAll에서 저장
         //DB 저장
@@ -71,6 +71,7 @@ class PayTypeTest(
         //람다식 코틀린 it 문법
         val findPayType = findMember준영.payTypes.find{ it.name == "생성카드"}
 
+        //then
         Assertions.assertEquals(payType생성카드, findPayType)
 
     }
@@ -78,8 +79,11 @@ class PayTypeTest(
     @Test
     fun 결제종류_선택조회() {
 
+        //given
+        //when
         val find기본카드 = payTypeRepository.findByIdOrNull(payType기본카드.payTypeId)!!
 
+        //then
 //        Assertions.assertEquals(payType기본카드, find기본카드)
         Assertions.assertEquals(payType기본카드.payTypeId, find기본카드.payTypeId)
         Assertions.assertEquals(payType기본카드.name, find기본카드.name)
@@ -88,11 +92,13 @@ class PayTypeTest(
     @Test
     fun 결제종류_전체조회byMember준영() {
 
+        //given
         val payType생성통장 = PayType(
             payMethod = PayMethod.BANK,
             name = "생성통장",
         ).apply { addMember(member준영) }
 
+        //when
         payTypeRepository.save(payType생성통장)
 
         //생성통장 DB 반영
@@ -102,6 +108,7 @@ class PayTypeTest(
         val find기본카드 = em.merge(payType기본카드)
         val findMember준영 = memberRepository.findByIdOrNull(member준영.memberId)!!
 
+        //then
         Assertions.assertEquals(findMember준영.payTypes.size, 2)
         Assertions.assertTrue(findMember준영.payTypes.contains(find기본카드))
         Assertions.assertTrue(findMember준영.payTypes.contains(payType생성통장))

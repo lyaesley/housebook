@@ -14,8 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
 class MemberTest(
-    @Autowired val memberRepository: MemberRepository,
     @Autowired val em: TestEntityManager,
+    @Autowired val memberRepository: MemberRepository,
 ) {
     private final val member준영 = Member(
         email = "ljy@test.com",
@@ -25,6 +25,10 @@ class MemberTest(
 
     @Test
     fun 멤버_저장and조회() {
+
+        //given
+
+        //when
         //member DB 저장
         memberRepository.save(member준영)
 
@@ -33,11 +37,12 @@ class MemberTest(
         em.detach(member준영)
 
         //DB 에서 다시 조회
-        val findMember = memberRepository.findByIdOrNull(member준영.memberId)!!
+        val findMember준영 = memberRepository.findByIdOrNull(member준영.memberId)!!
 
-        Assertions.assertEquals(findMember.memberId, member준영.memberId)
-        Assertions.assertEquals(findMember.email, "ljy@test.com")
-        Assertions.assertEquals(findMember.name, "이준영")
-        Assertions.assertEquals(findMember.password, "1111")
+        //then
+        Assertions.assertEquals(findMember준영.memberId, member준영.memberId)
+        Assertions.assertEquals(findMember준영.email, "ljy@test.com")
+        Assertions.assertEquals(findMember준영.name, "이준영")
+        Assertions.assertEquals(findMember준영.password, "1111")
     }
 }

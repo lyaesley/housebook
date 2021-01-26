@@ -9,6 +9,9 @@ data class Category(
     @Column(nullable = false)
     val categoryId: Long = 0,
 
+    @Column(nullable = false, length = 50)
+    val name: String = "",
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberId", nullable = false)
     var member: Member? = null,
@@ -38,4 +41,10 @@ data class Category(
         this.member = member
         member.categories.add(this)
     }
+
+    override fun toString(): String {
+        return "Category(categoryId=$categoryId, name='$name', parent=$parent, pays=$pays, payStatus=$payStatus)"
+    }
+
+
 }
