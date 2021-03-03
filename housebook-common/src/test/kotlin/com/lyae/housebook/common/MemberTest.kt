@@ -18,7 +18,7 @@ class MemberTest(
     @Autowired val memberRepository: MemberRepository,
 ) {
     private final val member준영 = Member(
-        email = "ljy@test.com",
+        email = "leejy@test.com",
         name = "이준영",
         password = "1111",
     )
@@ -41,7 +41,7 @@ class MemberTest(
 
         //then
         Assertions.assertEquals(findMember준영.memberId, member준영.memberId)
-        Assertions.assertEquals(findMember준영.email, "ljy@test.com")
+        Assertions.assertEquals(findMember준영.email, "leejy@test.com")
         Assertions.assertEquals(findMember준영.name, "이준영")
         Assertions.assertEquals(findMember준영.password, "1111")
     }

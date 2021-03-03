@@ -17,7 +17,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @DataJpaTest
 //static method가 없는 kotlin에서도 위와 같이 일반 함수에 @BeforeAll, @AfterAll 어노테이션을 사용할 수 있다.
 //2021-01-25 @BeforeAll 에서 em 을 사용할 수 없었다.
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+//2021-03-03 @TestInstance(TestInstance.Lifecycle.PER_CLASS) 를 사용하면 em을 테스트클래스 마다 공유하여 주석처리후 @BeforeAll 을 @BeforeEach 로 대체함
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PayTypeTest(
     @Autowired val em: TestEntityManager,
     @Autowired val payTypeRepository: PayTypeRepository,
@@ -34,8 +35,8 @@ class PayTypeTest(
         name = "기본카드",
     )
 
-    @BeforeAll
-    fun beforeAll() {
+    @BeforeEach
+    fun beforeEach() {
         memberRepository.save(member준영)
 
         //결제수단 멤버 연결
@@ -69,10 +70,12 @@ class PayTypeTest(
         //람다식 기본 문법
         //val findPayType = findMember준영.payTypes.find{ p ->  p.name == "생성카드"}
         //람다식 코틀린 it 문법
-        val findPayType = findMember준영.payTypes.find{ it.name == "생성카드"}
+        val findPayType생성 = findMember준영.payTypes.find{ it.name == "생성카드"}
+        val findPayType기본 = findMember준영.payTypes.find{ it.name == "기본카드"}
 
         //then
-        Assertions.assertEquals(payType생성카드, findPayType)
+        Assertions.assertEquals(payType생성카드, findPayType생성)
+        Assertions.assertEquals(payType기본카드.payTypeId, findPayType기본?.payTypeId)
 
     }
 
