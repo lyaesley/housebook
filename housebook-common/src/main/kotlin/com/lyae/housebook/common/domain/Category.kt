@@ -28,7 +28,7 @@ data class Category(
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    val payStatus: PayStatus? = null,   //결제분류 (수입:INCOME, 지출:SPEND, 이체:TRANSFER)
+    val payStatus: PayStatus = PayStatus.SPEND,   //결제분류 (수입:INCOME, 지출:SPEND, 이체:TRANSFER)
 
     ) {
     //==연관관계 메서드==//
@@ -37,13 +37,18 @@ data class Category(
         child.parent = this
     }
 
+    fun addParentCategory(parent: Category) {
+        parent.children.add(this)
+        this.parent = parent
+    }
+
     fun addMember(member: Member) {
         this.member = member
         member.categories.add(this)
     }
 
     override fun toString(): String {
-        return "Category(categoryId=$categoryId, name='$name', parent=$parent, pays=$pays, payStatus=$payStatus)"
+        return "Category(categoryId=$categoryId, name='$name', parent=$parent, payStatus=$payStatus)"
     }
 
 

@@ -9,6 +9,9 @@ data class Pay (
        @Column(nullable = false)
        val payId: Long = 0,
 
+       @Column(nullable = false)
+       val name: String = "",
+
        @ManyToOne(fetch = FetchType.LAZY)
        @JoinColumn(name = "memberId", nullable = false)
        var member: Member? = null,
@@ -49,4 +52,10 @@ data class Pay (
               this.category = category
               category.pays.add(this)
        }
+
+       override fun toString(): String {
+              return "Pay(payId=$payId, name='$name', payType=$payType, category=$category, payStatus=$payStatus)"
+       }
+
+
 }

@@ -11,7 +11,7 @@ data class PayType(
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    val payMethod: PayMethod? = null,    //결제수단종류(카드,현금,이체 등)
+    val payMethod: PayMethod = PayMethod.ETC,    //결제수단종류(카드,현금,이체 등)
 
     @Column(nullable = false, length = 50)
     val name: String = "",
