@@ -70,10 +70,11 @@ class PayTests(
     }
 
     @Test
-    fun 결제생성By멤버() {
+    fun 결제생성And결제조회By멤버() {
         //given
         val 점심결제 = Pay(
             name = "홍콩반점",
+            price = 10000,
             payStatus = PayStatus.SPEND,
         ).apply {
             addMember(member준영)
@@ -88,9 +89,17 @@ class PayTests(
 
         //then
         val find준영 = memberRepository.findByIdOrNull(member준영.memberId)!!
+        val find점심결제 = find준영.pays.find { it.name == "홍콩반점" }
 
         Assertions.assertEquals(1, find준영.pays.size)
         Assertions.assertEquals(find준영.pays.find { it.name == "홍콩반점" }?.payId, 점심결제.payId)
+        Assertions.assertEquals(find점심결제?.payId, 점심결제.payId)
+        Assertions.assertEquals(find점심결제?.price, 10000)
+
+    }
+
+    @Test
+    fun 결제조회검증() {
 
     }
 }

@@ -12,6 +12,9 @@ data class Pay (
        @Column(nullable = false)
        val name: String = "",
 
+       @Column(nullable = false)
+       val price: Long = 0,
+
        @ManyToOne(fetch = FetchType.LAZY)
        @JoinColumn(name = "memberId", nullable = false)
        var member: Member? = null,

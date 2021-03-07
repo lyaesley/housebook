@@ -19,4 +19,10 @@ data class FinancialLedger(
         override fun toString(): String {
                 return "FinancialLedger(ledgerId=$ledgerId, createDt=$createDt)"
         }
+
+        //연관관계 메소드
+        fun addMember(member: Member) {
+                this.member.add(member)
+                member.financialLedger = this
+        }
 }
