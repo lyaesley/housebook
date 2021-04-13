@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/7a623e9e/entityManagerFactory/housebook.housebook-common.main/jpa/JPA/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="412.5625" y="181.0">PayType#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/PayType.kt</node>
+    <node x="211.0625" y="-105.5">FinancialLedger#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/FinancialLedger.kt</node>
+    <node x="20.0625" y="176.0">Category#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Category.kt</node>
+    <node x="211.0625" y="269.0">Pay#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Pay.kt</node>
+    <node x="211.0625" y="55.0">Member#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Member.kt</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="FinancialLedger#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/FinancialLedger.kt" target="Member#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Member.kt" relationship="RELATION">
+      <point x="0.0" y="-40.0" />
+      <point x="298.0625" y="151.0" />
+      <point x="277.5625" y="151.0" />
+      <point x="0.0" y="63.0" />
+    </edge>
+    <edge source="Category#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Category.kt" target="Category#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Category.kt" relationship="RELATION">
+      <point x="-38.5" y="51.5" />
+      <point x="58.5625" y="299.0" />
+      <point x="0.0625" y="299.0" />
+      <point x="0.0625" y="227.5" />
+      <point x="-77.0" y="-0.0" />
+    </edge>
+    <edge source="PayType#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/PayType.kt" target="Member#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Member.kt" relationship="RELATION">
+      <point x="43.0" y="-51.5" />
+      <point x="541.5625" y="232.5" />
+      <point x="477.5625" y="232.5" />
+      <point x="477.5625" y="97.0" />
+      <point x="277.5625" y="97.0" />
+      <point x="0.0" y="63.0" />
+    </edge>
+    <edge source="PayType#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/PayType.kt" target="Pay#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Pay.kt" relationship="RELATION">
+      <point x="-43.0" y="-51.5" />
+      <point x="455.5625" y="437.0" />
+      <point x="288.0625" y="437.0" />
+      <point x="0.0" y="63.0" />
+    </edge>
+    <edge source="Pay#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Pay.kt" target="Member#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Member.kt" relationship="RELATION">
+      <point x="38.5" y="-63.0" />
+      <point x="326.5625" y="310.0" />
+      <point x="277.5625" y="310.0" />
+      <point x="0.0" y="63.0" />
+    </edge>
+    <edge source="Pay#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Pay.kt" target="Category#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Category.kt" relationship="RELATION">
+      <point x="-38.5" y="-63.0" />
+      <point x="249.5625" y="310.0" />
+      <point x="135.5625" y="310.0" />
+      <point x="38.5" y="51.5" />
+    </edge>
+    <edge source="Category#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Category.kt" target="Member#file://D:/dev/IdeaProjects/housebook/housebook-common/src/main/kotlin/com/lyae/housebook/common/domain/Member.kt" relationship="RELATION">
+      <point x="0.0" y="-51.5" />
+      <point x="97.0625" y="98.0" />
+      <point x="277.5625" y="98.0" />
+      <point x="0.0" y="63.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="360.5" y="293.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Embeddables</Category>
+    <Category>Properties</Category>
+  </Categories>
+</Diagram>
+
