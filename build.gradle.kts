@@ -10,8 +10,14 @@ plugins {
 	kotlin("plugin.jpa") version kotlinVersion apply false
     //추가
     kotlin("kapt") version kotlinVersion
-    kotlin("plugin.allopen") version kotlinVersion apply false
+    kotlin("plugin.allopen") version kotlinVersion
 
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.Embeddable")
+	annotation("javax.persistence.MappedSuperclass")
 }
 
 configurations {
@@ -19,6 +25,8 @@ configurations {
 		extendsFrom(configurations.annotationProcessor.get())
 	}
 }
+
+
 
 allprojects {
 	repositories {

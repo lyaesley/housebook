@@ -31,6 +31,9 @@ data class Pay (
        @Column(nullable = false)
        val payStatus: PayStatus? = null,  //결제분류 (수입:INCOME, 지출:SPEND, 이체:TRANSFER)
 
+       @Embedded
+       val period: Period
+
 ){
        fun addMember(member: Member) {
               //기존 관계를 제거
